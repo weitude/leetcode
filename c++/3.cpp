@@ -1,8 +1,3 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-using ll = long long;
-
 class Solution
 {
     public:
@@ -28,13 +23,3 @@ class Solution
             return mx;
         }
 };
-
-signed main()
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    Solution s;
-    string test = "bbbbb";
-    cout << s.lengthOfLongestSubstring(test);
-
-}
