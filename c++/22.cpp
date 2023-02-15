@@ -4,7 +4,7 @@ class Solution
         vector<string> ans;
         int N;
 
-        void DFS(int l, int r, string s)
+        void DFS(int l, int r, const string &s)
         {
             if (l > N || r > l || r > N)
                 return;
