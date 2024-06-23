@@ -1,34 +1,26 @@
-class Solution
-{
-    public:
-        bool isValid(string s)
-        {
-            stack<char> stk;
-            int len = s.length();
-            for (int i = 0; i < len; i++)
-            {
-                char ch = s[i];
-                if (stk.size() == 0)
-                    stk.push(ch);
-                else
-                {
-                    char top = stk.top();
-                    if (ch == '(' || ch == '[' || ch == '{')
-                        stk.push(ch);
-                    else if (ch == ')' && top == '(')
-                        stk.pop();
-                    else if (ch == ']' && top == '[')
-                        stk.pop();
-                    else if (ch == '}' && top == '{')
-                        stk.pop();
-                    else
-                        return false;
-                }
-            }
-            if (stk.empty())
-                return true;
-            else
-                return false;
-        }
+class Solution {
+	public:
+		bool isValid(string s) {
+			stack<char> stk;
+			int n = s.size();
+			for (int i = 0; i < n; i++) {
+				if (stk.size() == 0)
+					stk.push(s[i]);
+				else {
+					if (s[i] == ')' && stk.top() == '(')
+						stk.pop();
+					else if (s[i] == '}' && stk.top() == '{')
+						stk.pop();
+					else if (s[i] == ']' && stk.top() == '[')
+						stk.pop();
+					else
+						stk.push(s[i]);
+				}
+			}
+			if (stk.size() == 0)
+				return true;
+			return false;
+		}
+
 };
 
