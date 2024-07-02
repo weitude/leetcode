@@ -11,31 +11,21 @@
  */
 class Solution {
 	public:
-		vector<vector<int>> ans;
-		vector<pair<int, int>> cache;
-		int h = -1;
-
-		void traversal(TreeNode *root, int level)
-		{
-			if (!root)
-			{
-				if (h < level)
-					h = level;
-				return;
-			}
-			traversal(root->left, level + 1);
-			cache.push_back({level, root->val});
-			traversal(root->right, level + 1);
-		}
-
 		vector<vector<int>> levelOrder(TreeNode* root) {
-			if (!root)
-				return ans;
-			traversal(root, 0);
-			ans.resize(h);
-			for (auto p : cache)
-				ans[p.first].push_back(p.second);
+			vector<vector<int>> ans;
+			traversal(root, ans, 0);
 			return ans;
 		}
+
+		void traversal(TreeNode* root, vector<vector<int>> &ans, int depth) {
+			if (!root)
+				return;
+			traversal(root->left, ans, depth + 1);
+			traversal(root->right, ans, depth + 1);
+			while (ans.size() <= depth)
+				ans.push_back({});
+			ans[depth].push_back(root->val);
+		}
 };
+
 
